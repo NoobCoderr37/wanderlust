@@ -1,0 +1,108 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="category-block container-fluid h-65">
+    <div
+      class="category-container d-flex flex-wrap justify-content-around border rounded-1 p-1"
+    >
+      <!-- Category Item -->
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <span>Amazing views</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-landmark fa-1.5x"></i>
+        </div>
+        <span>Icons</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-swimmer fa-1.5x"></i>
+        </div>
+        <span>Amazing pools</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-umbrella-beach fa-1.5x"></i>
+        </div>
+        <span>Beachfront</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-bed fa-1.5x"></i>
+        </div>
+        <span>Rooms</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-paint-brush fa-1.5x"></i>
+        </div>
+        <span>Design</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-tractor fa-1.5x"></i>
+        </div>
+        <span>Farms</span>
+      </a>
+      <a href="#" class="category-item text-center mx-2">
+        <div class="icon">
+          <i class="fa fa-star fa-1.5x"></i>
+        </div>
+        <span>Luxury</span>
+      </a>
+    </div>
+    <div style="width: 29%" class="d-flex gap-3">
+      <div>
+        <button class="btn btn-filter">
+          <i class="fa-solid fa-sliders"></i> filter
+        </button>
+      </div>
+      <div
+        class="form-check form-switch d-flex justify-content-center align-items-center rounded-1 tax-container"
+      >
+        <label class="form-check-label" for="customSwitchCheckDefault">
+          Display total before taxes
+        </label>
+        <input
+          class="form-check-input ms-2 custom-checkbox"
+          type="checkbox"
+          id="customSwitchCheckDefault"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <%- include("../layouts/flash-msg") %>
+    <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+      <% if (allListings && allListings.length > 0) { %> <% for (let listing of
+      allListings) { %>
+      <div class="col">
+        <a href="/listings/<%= listing._id %>" style="text-decoration: none">
+          <div class="card h-100 card-effect">
+            <img
+              style="height: 20rem"
+              src="<%= listing.image.url %>"
+              class="card-img-top img-effect"
+              alt="Rental image for <%= listing.title %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text text-muted">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% } %> <% } else { %>
+      <div class="col">
+        <p class="text-center text-muted">No listings available.</p>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</body>

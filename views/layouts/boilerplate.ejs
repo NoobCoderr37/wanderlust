@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WANDERLUST</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.css"
+      integrity="sha512-GmZYQ9SKTnOea030Tbiat0Y+jhnYLIpsGAe6QTnToi8hI2nNbVMETHeK4wm4MuYMQdrc38x+sX77+kVD01eNsQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB UI Kit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css"
+      integrity="sha512-hj9rznBPdFg9A4fACbJcp4ttzdinMDtPrtZ3gBD11DiY3O1xJfn0r1U5so/J0zwfGOzq9teIaH5rFmjFAFw8SA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- For rating star -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Dummy CSS -->
+    <link rel="shortcut icon" href="#" />
+
+    <!-- MAP LINKS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- MAP GEOCODING -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+        style="height: 80px"
+      >
+        <div class="container-fluid bg-white">
+          <!-- Logo -->
+          <a class="navbar-brand fw-bold fs-3" href="/listings">
+            <img src="/images/logo.png" alt="logo" style="height: 65px" />
+          </a>
+
+          <!-- Toggler for small screens -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Collapsible Menu -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Centered Search Box -->
+            <div
+              class="d-flex w-100 justify-content-between align-items-center"
+            >
+              <form
+                class="d-flex mx-auto"
+                style="max-width: 450px; width: 100%"
+              >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Search listings..."
+                    style="
+                      border-radius: 50px;
+                      border: 1px solid #ddd;
+                      padding-left: 15px;
+                      height: 38px;
+                    "
+                  />
+                  <button
+                    type="submit"
+                    class="btn position-absolute"
+                    style="
+                      right: 10px;
+                      top: 35%;
+                      transform: translateY(-50%);
+                      background: transparent;
+                      border: none;
+                      box-shadow: none;
+                      color: #333;
+                    "
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right Section -->
+            <ul class="navbar-nav ms-auto align-items-center">
+              <!-- New Listing -->
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/listings/new"
+                  style="width: max-content"
+                  >YOUR HOME</a
+                >
+              </li>
+
+              <!-- Authentication Links -->
+              <% if (currentUser==undefined) { %>
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href="/users/signup">Signup</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href="/users/login">Signin</a>
+              </li>
+              <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link fw-bold" href="/users/logout">Logout</a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div>
+      <div style="margin-top: 90px"><%-body%></div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-dark mt-3" id="footer">
+      <!-- Social Media Section -->
+      <section
+        class="d-flex justify-content-between p-3 text-white"
+        style="background-color: #ff385c"
+      >
+        <div>
+          <span>Connect with us:</span>
+        </div>
+        <div class="social-links">
+          <a href="#" class="text-white me-3"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white me-3"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="text-white me-3"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-github"></i></a>
+        </div>
+      </section>
+
+      <!-- Main Footer Section -->
+      <section class="bg-light py-4">
+        <div class="container text-center text-md-start">
+          <div class="row">
+            <!-- About Section -->
+            <div class="col-md-3 mb-4">
+              <h6 class="text-uppercase fw-bold">Rental Homes</h6>
+              <hr
+                class="mb-4 mt-0 mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+              />
+              <p>
+                Discover perfect rental homes for vacations, business trips, or
+                long stays.
+              </p>
+            </div>
+
+            <!-- Explore Section -->
+            <div class="col-md-3 mb-4">
+              <h6 class="text-uppercase fw-bold">Explore</h6>
+              <hr
+                class="mb-4 mt-0 mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+              />
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-dark">Top Destinations</a></li>
+                <li><a href="#" class="text-dark">Popular Rentals</a></li>
+                <li><a href="#" class="text-dark">Luxury Homes</a></li>
+              </ul>
+            </div>
+
+            <!-- Support Section -->
+            <div class="col-md-3 mb-4">
+              <h6 class="text-uppercase fw-bold">Support</h6>
+              <hr
+                class="mb-4 mt-0 mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+              />
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-dark">Account</a></li>
+                <li><a href="#" class="text-dark">Help Center</a></li>
+                <li><a href="#" class="text-dark">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="col-md-3 mb-md-0 mb-4">
+              <h6 class="text-uppercase fw-bold">Contact</h6>
+              <hr
+                class="mb-4 mt-0 mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+              />
+              <ul class="list-unstyled">
+                <li>
+                  <i class="fas fa-home me-2"></i>123 Main St, New York, NY
+                </li>
+                <li>
+                  <i class="fas fa-envelope me-2"></i>support@rentalhomes.com
+                </li>
+                <li><i class="fas fa-phone me-2"></i>+1 555 123 4567</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Bottom -->
+      <div class="text-center p-3 bg-dark text-light">
+        © 2024 Rental Homes. All rights reserved.
+        <a href="#" class="text-light">Privacy Policy</a>
+      </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Font Awesome Bundle JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Custom JS -->
+    <script src="/js/script1.js"></script>
+  </body>
+</html>

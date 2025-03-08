@@ -1,0 +1,47 @@
+<% if (success && success.length) { %>
+<div
+  class="alert alert-success alert-dismissible fade show position-fixed end-0 me-3"
+  style="z-index: 1050; max-width: 300px; width: auto; right: 0"
+  role="alert"
+  aria-live="assertive"
+  id="success-alert"
+>
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } else if (error && error.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 mt-3 me-3"
+  style="z-index: 1050; max-width: 300px; width: auto; right: 0"
+  role="alert"
+  aria-live="assertive"
+  id="error-alert"
+>
+  <%= error %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>
+
+<script>
+  // Automatically dismiss alerts after 8 seconds
+  setTimeout(function () {
+    var successAlert = document.getElementById("success-alert");
+    var errorAlert = document.getElementById("error-alert");
+    if (successAlert) {
+      successAlert.classList.remove("show");
+    }
+    if (errorAlert) {
+      errorAlert.classList.remove("show");
+    }
+  }, 8000);
+</script>
